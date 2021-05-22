@@ -36,7 +36,7 @@ function Navbar() {
                     <Menu />
                 </IconButton> */}
                 <Typography variant="h6" className={classes.title}>
-                    Mini URL Shortener
+                    SML URL Shortener
                 </Typography>
                 {user ?
                     <Button color="inherit" onClick={handleLogout}>Logout</Button>

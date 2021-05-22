@@ -1,4 +1,4 @@
-import { Box, TableContainer, Typography, Paper, Table, TableHead, TableCell, TableRow, TableBody, TextField, Button, Container, CircularProgress, Backdrop } from '@material-ui/core'
+import { Box, TableContainer, Typography, Paper, Table, TableHead, TableCell, TableRow, TableBody, TextField, Button, Container, CircularProgress, Backdrop, Link } from '@material-ui/core'
 import React, {useEffect, useState} from 'react'
 import Navbar from '../Navbar/Navbar'
 import Cookies from 'js-cookie'
@@ -28,7 +28,7 @@ function Home() {
         .then(response => response.json())
         .then(data => {
             setProf(data);
-            if(data.message==='Invalid Token') {
+            if(data?.message==='Invalid Token') {
                 Cookies.remove('token');
                 setUser(false);
             }
@@ -44,7 +44,7 @@ function Home() {
             setErr('Invalid url!');
             return;
         }
-
+        setErr('');
         setIsLoading(true);
         const requestOptions = {
             method: 'POST',
@@ -80,23 +80,29 @@ function Home() {
                 short: url
             })
         }
-        fetch(config.APIURL+'/delete', requestOptions)
-        .then(response => response.json())
-        .then(data => {
-            var ind = data.user.urls.findIndex(u => u._id == url._id);
-            console.log(ind);
-            if(ind>-1)
-                data.user.urls.splice(ind, 1);
-            setProf(data.user);
-            console.log(data);
+        if(window.confirm("Are you sure you want to delete?")){
+            fetch(config.APIURL+'/delete', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                var ind = data.user.urls.findIndex(u => u._id == url._id);
+                console.log(ind);
+                if(ind>-1)
+                    data.user.urls.splice(ind, 1);
+                setProf(data.user);
+                console.log(data);
+                setIsLoading(false);
+            })
+        }
+        else{
             setIsLoading(false);
-        })
+        }
     }
     function handleCopy(e, id){
         console.log(id);
         var copyText = document.getElementById(id);
         console.log(copyText);
         navigator.clipboard.writeText(copyText.innerHTML)
+        alert('Copied '+copyText.innerHTML)
         // copyText?.setSelectionRange(0, 99999); /* For mobile devices */
 
         // /* Copy the text inside the text field */
@@ -124,9 +130,9 @@ function Home() {
                                         <TextField onChange={(e) => setUrl(e.target.value)} value={url} label='Type an URL to short' style={{width:"100%", marginRight:"10px"}}/>
                                         <Button variant='contained' color='primary' onClick={handleAdd}>Add</Button>
                                     </Container>
-                                    <Typography variant='subtitle1' style={{color:'red'}}>{err}</Typography>
+                                    <Typography variant='subtitle1' style={{color:'red', marginTop:'20px'}}>{err}</Typography>
                                     <TableContainer component={Paper} style={{maxWidth:'700px', margin:' 40px auto'}}>
-                                        <Table> 
+                                        <Table style={{minWidth:'600px'}}> 
                                             <TableHead>
                                                 <TableRow>
                                                     <TableCell>Full URL</TableCell>
@@ -139,7 +145,7 @@ function Home() {
                                                         return (
                                                             <TableRow>
                                                                 <TableCell>{url.full}</TableCell>
-                                                                <TableCell style={{alignItems: 'center'}}><span id={url._id}>{url.short}</span><FileCopy onClick={(e) => handleCopy(e,url._id)} style={{marginLeft:'10px'}}/></TableCell>
+                                                                <TableCell style={{alignItems: 'center'}}><Link id={url._id} onClick={(e) => { console.log('asd'); window.open(`http://mysml.tech/#/${url.short}`, '_blank')}}>http://mysml.tech/#/{url.short}</Link><FileCopy onClick={(e) => handleCopy(e,url._id)} style={{marginLeft:'10px'}}/></TableCell>
                                                                 <TableCell onClick={(e) => handleDelete(e, url)}><Delete/></TableCell>
                                                             </TableRow>
                                                         )

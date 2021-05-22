@@ -10,7 +10,7 @@ function ShortUrl() {
         fetch(config.APIURL+`/${short}`, {method: 'get'})
         .then(response => response.json())
         .then(data => {
-            window.location.href = data.url.substr(0,8)!='https://'?'https://'+data.url:data.url;
+            window.location.href = data.url;
             setUrl(data.url)
             console.log(data);
 
