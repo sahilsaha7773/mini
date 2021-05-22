@@ -145,7 +145,7 @@ function Home() {
                                                         return (
                                                             <TableRow>
                                                                 <TableCell>{url.full}</TableCell>
-                                                                <TableCell style={{alignItems: 'center'}}><Link id={url._id} onClick={(e) => { console.log('asd'); window.open(`http://mysml.tech/#/${url.short}`, '_blank')}}>http://mysml.tech/#/{url.short}</Link><FileCopy onClick={(e) => handleCopy(e,url._id)} style={{marginLeft:'10px'}}/></TableCell>
+                                                                <TableCell style={{alignItems: 'center'}}><Link id={url._id} onClick={(e) => { console.log('asd'); window.open(`https://mysml.tech/#/${url.short}`, '_blank')}}>mysml.tech/#/{url.short}</Link></TableCell>
                                                                 <TableCell onClick={(e) => handleDelete(e, url)}><Delete/></TableCell>
                                                             </TableRow>
                                                         )
