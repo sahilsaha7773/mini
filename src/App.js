@@ -1,7 +1,7 @@
 import { Box } from '@material-ui/core';
 import { 
   Route, 
-  BrowserRouter as Router, 
+  HashRouter as Router, 
   Switch } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home/Home';
