@@ -12,6 +12,9 @@ function App() {
   return (
       <Router>
         <Switch>
+          <Route exact path='/'>
+            <Home/>
+          </Route>
           <Route path='/login'>
             <Login/>
           </Route>
@@ -21,9 +24,7 @@ function App() {
           <Route path='/:short'>
             <ShortUrl/>
           </Route>
-          <Route path='/'>
-            <Home/>
-          </Route>
+          
         </Switch>
       </Router>
   );
