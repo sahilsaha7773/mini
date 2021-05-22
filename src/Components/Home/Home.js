@@ -4,7 +4,7 @@ import Navbar from '../Navbar/Navbar'
 import Cookies from 'js-cookie'
 import config from '../../config';
 import {Redirect} from 'react-router-dom';
-import { Delete, FileCopy, FileCopyOutlined } from '@material-ui/icons';
+import { Delete, Favorite, FileCopy, FileCopyOutlined, FreeBreakfast } from '@material-ui/icons';
 function Home() {
     const [user, setUser] = useState(true);
     const [prof, setProf] = useState({});
@@ -126,11 +126,14 @@ function Home() {
                             <Box style={{textAlign: 'center', marginTop:'40px'}}>
                                 <Typography variant='h5'>Welcome back {prof.email}</Typography>
                                 <Container style={{textAlign: 'center', maxWidth:'700px'}}>
-                                    <Container style={{display: 'flex', alignItems: 'center', marginTop:'20px', justifyContent: 'center'}}>
+                                    <Container style={{display: 'flex', alignItems: 'center', margin:'40px 0 40px 0', justifyContent: 'center'}}>
                                         <TextField onChange={(e) => setUrl(e.target.value)} value={url} label='Type an URL to short' style={{width:"100%", marginRight:"10px"}}/>
                                         <Button variant='contained' color='primary' onClick={handleAdd}>Add</Button>
                                     </Container>
                                     <Typography variant='subtitle1' style={{color:'red', marginTop:'20px'}}>{err}</Typography>
+                                    {prof.urls.length === 0 ? (
+                                        <Typography variant='subtitle1' style={{margin:'0 0 50px 0'}}>You have not shorted any URLs.</Typography>
+                                    ):(
                                     <TableContainer component={Paper} style={{maxWidth:'700px', margin:' 40px auto'}}>
                                         <Table style={{minWidth:'600px'}}> 
                                             <TableHead>
@@ -140,6 +143,7 @@ function Home() {
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
+                                                
                                                 {
                                                     prof.urls?.map(url => {
                                                         return (
@@ -155,7 +159,9 @@ function Home() {
                                             </TableBody>
                                         </Table>
                                     </TableContainer>
+                                    )}
                                 </Container>
+                                <Typography variant='subtitle1' style={{display:'flex', alignItems: 'center', justifyContent: 'center'}}>Made with <Favorite style={{margin:'0 5px'}} color='primary'/>by <Link href="http://sahilsaha.me" style={{margin:'0 5px'}}> Sahil Saha</Link> </Typography>
                             </Box>
                         )
                     }

@@ -5,6 +5,7 @@ import config from '../../config';
 import Cookies from 'js-cookie';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import { Favorite } from '@material-ui/icons';
 
 function Register() {
     const [email, setEmail] = useState("");
@@ -81,6 +82,7 @@ function Register() {
                         </Container>
                     </Paper>
                 </Container>
+                <Typography variant='subtitle1' style={{display:'flex', alignItems: 'center', justifyContent: 'center'}}>Made with <Favorite style={{margin:'0 5px'}} color='primary'/>by <Link href="http://sahilsaha.me" style={{margin:'0 5px'}}> Sahil Saha</Link> </Typography>
             </Box>
         )
     )
