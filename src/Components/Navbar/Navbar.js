@@ -26,7 +26,7 @@ function Navbar() {
         e.preventDefault();
         Cookies.remove('token');
         setUser(false);
-        window.location.href = '/login';
+        window.location.href = '/#/login';
     }
     const classes = useStyles();
     return (
@@ -41,7 +41,7 @@ function Navbar() {
                 {user ?
                     <Button color="inherit" onClick={handleLogout}>Logout</Button>
                 :(
-                    <Button color="inherit">Login</Button>
+                    <Button color="inherit" onClick={window.location.href = '/#/login'}>Login</Button>
                 )}
             </Toolbar>
         </AppBar>
