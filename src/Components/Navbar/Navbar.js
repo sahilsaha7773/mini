@@ -38,11 +38,9 @@ function Navbar() {
                 <Typography variant="h6" className={classes.title}>
                     SML URL Shortener
                 </Typography>
-                {user ?
+                {user &&
                     <Button color="inherit" onClick={handleLogout}>Logout</Button>
-                :(
-                    <Button color="inherit" onClick={window.location.href = '/#/login'}>Login</Button>
-                )}
+                }
             </Toolbar>
         </AppBar>
     )
