@@ -14,7 +14,7 @@ Mini is an URL shoretening service. It allows users to:
 - Add URLs and short them.
 - Delete and view existing URLs.
 
-This project is made using ***React JS*** at the frontend and ***node js*** at the backend while ***Mongo*** is used as the database.
+This project is made using ***React JS*** at the frontend and ***Express (node js)*** at the backend while ***Mongo*** is used as the database.
 - [Backend Repo Link](https://github.com/sahilsaha7773/Mini-back-end)
 
 ## Tech Stack
